@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import InputForm from "./InputForm";
+import FilterSelect from "./FilterSelect";
+import RemaindersList from "./RemaindersList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+function App(){
+  const [remainders,setRemainders]=useState();
+  const [userInput,setUserInput]=useState();
+  const [selectedFilter,setSelectedFilter]=useState("all");
+  return(
+    <div>
+      <InputForm userInput={userInput}
+                 setUserInput={setUserInput}/>
+      <FilterSelect selectedFilter={selectedFilter}
+                    setSelectedFilter={setSelectedFilter} />
+
+      <RemaindersList remainders={remainders}/>
     </div>
-  );
+  )
+  
 }
 
 export default App;
