@@ -9,6 +9,7 @@ function Remainder(props){
     );
 }
 Remainder.propTypes = {
+    
     remainderText: PropTypes.string,
     dueDate: PropTypes.string,
     isComplete: PropTypes.bool
