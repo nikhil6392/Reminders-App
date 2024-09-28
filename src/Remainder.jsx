@@ -1,4 +1,4 @@
-import PropType from 'prop-types'
+import PropTypes from 'prop-types'
 
 function Remainder(props){
     return (
@@ -7,6 +7,11 @@ function Remainder(props){
              Completed?: {String(props.isComplete)}
         </div>
     );
+}
+Remainder.propTypes = {
+    remainderText: PropTypes.string,
+    dueDate: PropTypes.string,
+    isComplete: PropTypes.bool
 }
 const date = new Date();
 const formattedDate = date.toISOString().substring(0,10);
