@@ -2,6 +2,7 @@ import { useState } from "react";
 import InputForm from "./InputForm";
 import FilterSelect from "./FilterSelect";
 import RemaindersList from "./RemaindersList";
+import "./index.css";
 
 
 function App(){
@@ -56,8 +57,8 @@ function App(){
       const result =remainders.filter(remainder=>{
         const todaysDate = new Date().toISOString().substring(0,10);
         const todayTime = new Date(todaysDate).getTime();
-        const dueTime=new Date(remainder.dueDate).getTime();
-        return dueTime < (todayTime + (numberOfDays*86400000));
+        const  dueTime=new Date(remainder.dueDate).getTime();
+        return dueTime <(todayTime + (numberOfDays*24*60*60*1000));
       });
       return result;
     }
@@ -67,7 +68,7 @@ function App(){
     <div>
       <InputForm userInput={userInput}
                  setUserInput={setUserInput}
-                 addNewRemainder={addNewRemainder}/>
+                 addNewRemainder={addNewRemainder}/><br/>
       <FilterSelect selectedFilter={selectedFilter}
                     setSelectedFilter={setSelectedFilter} />
 
