@@ -1,15 +1,21 @@
 import PropTypes from 'prop-types'
 
 function Remainder(props){
+    function handleChange(){
+        props.setIsComplete(!props.isComplete,props.id);
+    }
     return (
-        <div>item: {props.remainderText}
-             dueDate: {props.dueDate}
-             Completed?: {String(props.isComplete)}
+        <div className='item'>item: {props.remainderText}
+            <span className='dueDate'>due Date: {props.dueDate}</span>
+            <span className='isComplete'>
+                Completed?:<input type='checkbox'
+                                checked={props.isComplete}
+                                onChange={handleChange} />
+            </span>
         </div>
     );
 }
 Remainder.propTypes = {
-    
     remainderText: PropTypes.string,
     dueDate: PropTypes.string,
     isComplete: PropTypes.bool

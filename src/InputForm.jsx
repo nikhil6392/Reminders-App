@@ -1,16 +1,35 @@
 import PropTypes from "prop-types";
 
 const InputForm = (props) => {
+    const handleTextChange=(e)=>{
+        const newUserInput = {...props.userInput,remainderText:e.target.value}
+        props.setUserInput(newUserInput);
+    }
+    const handleDateChange = (e) =>{
+        const date = new Date(e.target.value);
+        const formattedDate = date.toISOString.substring(0,10);
+        const newUserInput = {...props.userInput,dueDate:formattedDate};
+        props.setUserInput(newUserInput);
+    }
+    const handleClick=(e)=>{
+        e.preventDefault();
+        const itemToAdd={...props.userInput,isComplete:false};
+        props.addNewRemainder(itemToAdd)
+    }    
+
   return (
     <form>
        <input value={props.userInput.remainderText}
               id="remainderText"
               type='text'
-              placeholder='What do you want to do ?'/>
+              placeholder='What do you want to do ?'
+              onChange={handleTextChange}/>
        <input value={props.userInput.dueDate}
               id="dueDate"
-              type='date'/>
-        <button>Add Item</button>
+              type='date'
+              onChange={handleDateChange}/>
+
+        <button onClick={handleClick}>Add Item</button>
     </form>
   )
 }
@@ -20,7 +39,8 @@ InputForm.propTypes={
         remainderText:PropTypes.string,
         dueDate:PropTypes.string
     }),
-    setUserInput: PropTypes.func
+    setUserInput: PropTypes.func,
+    addNewRemainder: PropTypes.func
 }
 
 const date = new Date();
@@ -33,17 +53,6 @@ InputForm.defaultProps = {
         dueDate:formattedDate
     }
 }
-const handleTextChange=(e)=>{
-    const newUserInput = {...props.userInput,remainderTest:e.target.value}
-    props.setUserInput(newUserInput);
-}
 
-const handleDateChange = (e) =>{
-    const date = new Date(e.target.value);
-    const formattedDate = date.toISOString.subString(0,10);
-    const newUserInput = {...props.userInput,dueDate:formattedDate};
-    props.setUserInput(newUserInput)
-
-}
 
 export default InputForm;

@@ -7,6 +7,7 @@ const RemaindersList = (props) => {
             <Remainder remainderText={remainder.remainderText}
                        dueDate={remainder.dueDate}
                        isComplete={remainder.isComplete}
+                       setIsComplete={props.setIsComplete}
                        id={index}
                        key={index} /> 
         )
@@ -19,9 +20,16 @@ const RemaindersList = (props) => {
     );
 }
 
-RemaindersList.propTypes={
-    remainders: PropTypes.array
-}
+RemaindersList.propTypes = {
+    remainders: PropTypes.arrayOf(
+        PropTypes.shape({
+            remainderText: PropTypes.string.isRequired,
+            dueDate: PropTypes.string.isRequired,
+            isComplete: PropTypes.bool.isRequired
+        })
+    )
+};
+
 
 const date = new Date();
 const formattedDate = date.toISOString().substring(0,10);
